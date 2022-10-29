@@ -1,0 +1,44 @@
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.app'
+    compileSdk 32 // 告訴 Gradle 要用哪個 Android SDK 版本編譯你的應用程式
+
+    defaultConfig {
+        applicationId "com.app"
+        minSdk 26
+        targetSdk 32 // 是 Android 提供向前兼容的主要依據(不可以大於 compileSdk)
+        versionCode 1 // 對內版號
+        versionName "1.0" // 對外版號
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false // 關閉，關閉 ProGuard 混淆
+            // 默認 ProGuard 規則文件，配置檔 Android Gradle 插件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        release {
+            minifyEnabled true // 開啟，啟用 ProGuard 混淆
+            // 默認 ProGuard 規則文件，配置檔 Android Gradle 插件
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+}
+
+dependencies {
+    implementation 'androidx.appcompat:appcompat:1.4.1'
+    implementation 'com.google.android.material:material:1.5.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.3'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+}
