@@ -1,7 +1,9 @@
 package com.example.app_lifecycle;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.TextView;
@@ -61,9 +63,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onRestart() {
         super.onRestart();
-
-        play = true;
         Log.i(TAG, "onRestart()");
+        // 對話視窗設定/建構
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setTitle("是否要繼續?");
+        builder.setPositiveButton("繼續", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                play = true;
+            }
+        });
+        builder.setNegativeButton("離開", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                finish(); // 將 Activity 關閉
+            }
+        });
+        // 建立對話視窗
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
 
     @Override

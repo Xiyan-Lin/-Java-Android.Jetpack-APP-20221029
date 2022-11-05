@@ -45,6 +45,6 @@ public class MainActivity extends AppCompatActivity {
         civ.setImageResource(images[new Random().nextInt(images.length)]);
         vibrator.vibrate(100); // 震動 0.1 秒
         //vibrator.vibrate(5000); // 震動 5 秒
-        //vibrator.vibrate(new long[]{100, 200}, 3); // 停 0.1 秒後震動 0.2 秒 循環 3 次, repeat = -1 表示(無限次)
+        //vibrator.vibrate(new long[]{100, 200}, 3);
     }
 }
