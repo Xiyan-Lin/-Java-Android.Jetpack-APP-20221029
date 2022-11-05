@@ -4,80 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/loginbkg"
     tools:context=".MainActivity">
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/login_card"
+
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:layout_margin="30dp"
-        app:cardCornerRadius="30dp"
-        app:cardElevation="20dp"
-        android:alpha="0.85"
-        android:layout_centerInParent="true"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
-
-        <LinearLayout
-            android:padding="24dp"
-            android:layout_gravity="center_horizontal"
-            android:orientation="vertical"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <!-- Login -->
-            <TextView
-                android:text="Login"
-                android:textSize="36dp"
-                android:textAlignment="center"
-                android:textStyle="bold"
-                android:textColor="@color/purple_200"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-            <!-- input username -->
-            <EditText
-                android:background="@drawable/custom_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="40dp"
-                android:hint="username"
-                android:drawableLeft="@drawable/ic_baseline_person_24"
-                android:drawablePadding="8dp"
-                android:padding="8dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-            <!-- input password -->
-            <EditText
-                android:background="@drawable/custom_edittext"
-                android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:layout_marginTop="20dp"
-                android:hint="password"
-                android:drawableLeft="@drawable/ic_baseline_lock_24"
-                android:drawablePadding="8dp"
-                android:padding="8dp"
-                tools:ignore="SpeakableTextPresentCheck" />
-            <!-- login button -->
-            <Button
-                android:background="@drawable/custom_edittext"
-                android:text="Login"
-                android:textSize="18dp"
-                android:layout_marginTop="20dp"
-                android:layout_width="match_parent"
-                android:layout_height="60dp" />
-        </LinearLayout>
-
-    </androidx.cardview.widget.CardView>
-
-    <TextView
+        app:civ_border_width="5dp"
+        app:civ_border_color="@color/purple_200"
+        android:contentDescription="bra"
+        android:src="@drawable/bra"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@+id/login_card"
-        android:layout_centerInParent="true"
-        android:layout_marginBottom="-30dp"
-        android:text="Not yet registered? SingUp Now"
-        android:textColor="@color/purple_200" />
+        android:layout_height="wrap_content" />
 
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="100dp"
-        android:layout_alignParentBottom="true"
-        android:background="@drawable/wave" />
 </RelativeLayout>
