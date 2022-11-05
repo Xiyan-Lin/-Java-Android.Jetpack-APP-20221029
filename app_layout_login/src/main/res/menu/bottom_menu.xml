@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:title="Home"
+        android:id="bottom_home"
+        android:icon="@drawable/ic_baseline_home_24" />
+
+    <item android:title="QRcode"
+        android:id="bottom_qr"
+        android:icon="@drawable/ic_baseline_qr_code_24" />
+
+    <item android:title="Search"
+        android:id="bottom_search"
+        android:icon="@drawable/ic_baseline_search_24" />
+
+</menu>
