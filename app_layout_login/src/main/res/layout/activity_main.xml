@@ -38,6 +38,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="40dp"
+                android:hint="username"
+                android:drawableLeft="@drawable/ic_baseline_person_24"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
                 tools:ignore="SpeakableTextPresentCheck" />
             <!-- input password -->
             <EditText
@@ -45,6 +49,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginTop="20dp"
+                android:hint="password"
+                android:drawableLeft="@drawable/ic_baseline_lock_24"
+                android:drawablePadding="8dp"
+                android:padding="8dp"
                 tools:ignore="SpeakableTextPresentCheck" />
             <!-- login button -->
             <Button
