@@ -9,7 +9,24 @@
 
     <item android:title="Menu"
         app:showAsAction="always"
-        android:icon="@drawable/ic_baseline_menu_24" />
+        android:icon="@drawable/ic_baseline_menu_24">
+
+        <menu>
+            <item android:title="Add"
+                android:id="@+id/options_add"
+                android:icon="@drawable/ic_baseline_person_add_24" />
+
+            <item android:title="Money"
+                android:id="@+id/options_money"
+                android:icon="@drawable/ic_baseline_attach_money_24" />
+
+            <item android:title="Info"
+                android:id="@+id/options_info"
+                android:icon="@drawable/ic_baseline_info_24" />
+
+        </menu>
+
+    </item>
 
 
 </menu>
