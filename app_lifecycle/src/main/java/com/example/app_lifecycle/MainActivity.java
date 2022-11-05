@@ -4,14 +4,36 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
     private final String TAG = getClass().getSimpleName();
+    private TextView tv;
+    int i = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        tv = findViewById(R.id.tv); // 會得到 TextView 物件
         Log.i(TAG, "onCreate()");
+        Runnable runnable = () -> {
+            while (true) {
+                try {
+                    changeContent();
+                    Thread.sleep(1000);
+                } catch (Exception e) {
+
+                }
+            }
+        };
+        new Thread(runnable).start();
+    }
+
+    private void changeContent() {
+        runOnUiThread(() -> {
+            tv.setText(String.valueOf(++i)); // 變更 UI
+        });
+        Log.i(TAG, String.valueOf(i));
     }
 
     @Override
