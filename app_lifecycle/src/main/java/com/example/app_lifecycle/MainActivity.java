@@ -4,8 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,8 +19,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         tv = findViewById(R.id.tv); // 會得到 TextView 物件
         Log.i(TAG, "onCreate()");
+
         Runnable runnable = () -> {
             while (true) {
                 try {
@@ -32,6 +36,17 @@ public class MainActivity extends AppCompatActivity {
             }
         };
         new Thread(runnable).start();
+
+        // 按下 tv 事件
+        tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // 另外啟動一個新的 Activity
+                Intent intent = new Intent(MainActivity.this, DialogActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
 
     private void changeContent() {

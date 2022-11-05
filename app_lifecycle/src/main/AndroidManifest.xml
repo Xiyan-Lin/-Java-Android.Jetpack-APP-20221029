@@ -9,6 +9,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_Jetpack_2022">
         <activity
+            android:name=".DialogActivity"
+            android:theme="@android:style/Theme.Dialog"
+            android:exported="true">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
