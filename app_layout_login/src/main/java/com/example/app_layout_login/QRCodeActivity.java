@@ -17,7 +17,7 @@ import com.karumi.dexter.listener.single.PermissionListener;
 
 import me.dm7.barcodescanner.zxing.ZXingScannerView;
 
-public class QRCodeActivity extends AppCompatActivity {
+public class QRCodeActivity extends AppCompatActivity implements ZXingScannerView.ResultHandler {
     private ZXingScannerView scannerView;
     private TextView textResult;
     private Context context;
@@ -37,12 +37,7 @@ public class QRCodeActivity extends AppCompatActivity {
                     @Override
                     public void onPermissionGranted(PermissionGrantedResponse response) {
                         // 掃描結果處理
-                        scannerView.setResultHandler(new ZXingScannerView.ResultHandler() {
-                            @Override
-                            public void handleResult(Result result) {
-                                textResult.setText(result.getText());
-                            }
-                        });
+                        scannerView.setResultHandler(QRCodeActivity.this);
                         // 啟用相機
                         scannerView.startCamera();
 
@@ -59,5 +54,13 @@ public class QRCodeActivity extends AppCompatActivity {
                     }
                 })
                 .check();
+    }
+
+    @Override
+    public void handleResult(Result result) {
+        textResult.setText(result.getText());
+        // 連續掃描
+        scannerView.startCamera();
+        scannerView.resumeCameraPreview(QRCodeActivity.this);
     }
 }
