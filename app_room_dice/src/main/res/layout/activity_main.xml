@@ -6,17 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <ScrollView
-        android:orientation="vertical"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv"
-            android:layout_margin="10dp"
-            android:hint="data..."
+
+        <ListView
+            android:id="@+id/list_item"
+            android:fastScrollEnabled="false"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </ScrollView>
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fab"
