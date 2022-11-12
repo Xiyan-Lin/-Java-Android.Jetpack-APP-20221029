@@ -7,11 +7,18 @@
     tools:context=".MainActivity">
 
     <LinearLayout
+        android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/list_title"
+            layout="@layout/list_item" />
+
         <ListView
             android:id="@+id/list_item"
+            android:background="@drawable/custom_edittext"
+            android:layout_margin="10dp"
             android:fastScrollEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
