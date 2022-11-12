@@ -13,7 +13,7 @@ import com.example.app_room_dice.entity.Dice;
 public abstract class DiceDatabase extends RoomDatabase {
     private static final String DATABASE_NAME = "dice_db"; // 資料庫存檔檔名
     private static DiceDatabase diceDatabase;
-    private static synchronized DiceDatabase getInstance(Context context) {
+    public static synchronized DiceDatabase getInstance(Context context) {
         if(diceDatabase == null) {
             diceDatabase = Room
                     .databaseBuilder(context, DiceDatabase.class, DATABASE_NAME)
