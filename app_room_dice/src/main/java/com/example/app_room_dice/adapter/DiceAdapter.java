@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.app_room_dice.R;
@@ -49,18 +50,23 @@ public class DiceAdapter extends BaseAdapter {
         // 將 R.layout.list_item 物件化
         convertView = layoutInflater.inflate(R.layout.list_item, null);
         TextView tvId = convertView.findViewById(R.id.tv_id);
-        TextView tvD1 = convertView.findViewById(R.id.tv_d1);
-        TextView tvD2 = convertView.findViewById(R.id.tv_d2);
-        TextView tvD3 = convertView.findViewById(R.id.tv_d3);
+        ImageView tvD1 = convertView.findViewById(R.id.tv_d1);
+        ImageView tvD2 = convertView.findViewById(R.id.tv_d2);
+        ImageView tvD3 = convertView.findViewById(R.id.tv_d3);
         TextView tvSum = convertView.findViewById(R.id.tv_sum);
         // 將資料逐筆配置到 UI 上
         Dice dice = diceList.get(i);
         tvId.setText(dice.getId() + "");
-        tvD1.setText(dice.getD1() + "");
-        tvD1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.dice1, 0, 0, 0);
-        tvD2.setText(dice.getD2() + "");
-        tvD3.setText(dice.getD3() + "");
+        setDiceImage(tvD1, dice.getD1());
+        setDiceImage(tvD2, dice.getD2());
+        setDiceImage(tvD3, dice.getD3());
         tvSum.setText(dice.getSum() + "");
         return convertView;
+    }
+
+    private void setDiceImage(ImageView imageView, int number) {
+        int[] diceImages = {R.drawable.dice1, R.drawable.dice2, R.drawable.dice3,
+                            R.drawable.dice4, R.drawable.dice5, R.drawable.dice6};
+        imageView.setImageResource(diceImages[number-1]);
     }
 }
