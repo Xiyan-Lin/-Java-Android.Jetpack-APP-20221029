@@ -11,46 +11,45 @@
     <TextView
         android:id="@+id/tv_id"
         android:layout_margin="10dp"
+        android:layout_weight="1"
+        android:gravity="center"
         android:textSize="24dp"
         android:text="id"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_d1"
         android:layout_margin="10dp"
-        android:textSize="24dp"
-        android:text="D1"
         android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/dice1"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_d2"
         android:layout_margin="10dp"
-        android:textSize="24dp"
-        android:text="D2"
         android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/dice2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
-    <TextView
+    <ImageView
         android:id="@+id/tv_d3"
         android:layout_margin="10dp"
-        android:textSize="24dp"
-        android:text="D3"
         android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:src="@drawable/dice3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
     <TextView
         android:id="@+id/tv_sum"
         android:layout_margin="10dp"
+        android:layout_weight="1"
         android:textSize="24dp"
         android:text="SUM"
-        android:layout_weight="1"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:gravity="center"
+        android:layout_width="50dp"
+        android:layout_height="50dp"/>
 
 </LinearLayout>

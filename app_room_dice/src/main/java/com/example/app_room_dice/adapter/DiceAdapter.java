@@ -57,6 +57,7 @@ public class DiceAdapter extends BaseAdapter {
         Dice dice = diceList.get(i);
         tvId.setText(dice.getId() + "");
         tvD1.setText(dice.getD1() + "");
+        tvD1.setCompoundDrawablesWithIntrinsicBounds(R.drawable.dice1, 0, 0, 0);
         tvD2.setText(dice.getD2() + "");
         tvD3.setText(dice.getD3() + "");
         tvSum.setText(dice.getSum() + "");
