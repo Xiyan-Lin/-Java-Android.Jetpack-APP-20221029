@@ -11,7 +11,7 @@ public class Dice {
     @PrimaryKey(autoGenerate = true)
     private Long id;
 
-    @ColumnInfo(name = "id") // 若資料表欄位名稱與物件屬性名稱一樣 可以不用設定
+    @ColumnInfo(name = "d1") // 若資料表欄位名稱與物件屬性名稱一樣 可以不用設定
     private Integer d1;
 
     private Integer d2;
