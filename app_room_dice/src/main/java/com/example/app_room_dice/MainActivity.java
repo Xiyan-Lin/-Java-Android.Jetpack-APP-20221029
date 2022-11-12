@@ -44,13 +44,25 @@ public class MainActivity extends AppCompatActivity {
                 // 新增
                 diceDao.insert(dice);
                 // 查詢所有資料 & 顯示在 tv 上
-                List<Dice> diceList = diceDao.queryAll();
-                // 透過 UI (主)執行緒來配置/變更畫面內容
-                runOnUiThread(() -> {
-                    tv.setText(diceList.toString());
-                    setTitle(diceList.size() + "筆");
-                });
+                showDice();
+            });
+        });
+
+        // 首要工作
+        showDice();
+    }
+
+    // 查詢所有資料 & 顯示在 tv 上
+    private void showDice() {
+        Executors.newSingleThreadExecutor().execute(() -> {
+            // 查詢所有資料 & 顯示在 tv 上
+            List<Dice> diceList = diceDao.queryAll();
+            // 透過 UI (主)執行緒來配置/變更畫面內容
+            runOnUiThread(() -> {
+                tv.setText(diceList.toString());
+                setTitle(diceList.size() + "筆");
             });
         });
     }
+
 }
