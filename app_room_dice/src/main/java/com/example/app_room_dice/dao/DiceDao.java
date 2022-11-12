@@ -20,6 +20,9 @@ public interface DiceDao {
     @Query("select id, d1, d2, d3, sum from dice")
     public List<Dice> queryAll();
 
+    @Query("select id, d1, d2, d3, sum from dice where id =:id")
+    public Dice getDice(long id);
+
     @Update(onConflict = OnConflictStrategy.REPLACE)
     public void update(Dice dice);
 

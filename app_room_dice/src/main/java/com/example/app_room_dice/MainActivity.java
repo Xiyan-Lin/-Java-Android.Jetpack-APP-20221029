@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app_room_dice.adapter.DiceAdapter;
 import com.example.app_room_dice.dao.DiceDao;
@@ -55,6 +56,23 @@ public class MainActivity extends AppCompatActivity {
                 showDice();
             });
         });
+
+        listView.setOnItemClickListener(((adapterView, view, position, id) -> {
+            Executors.newSingleThreadExecutor().execute(() -> {
+                Random random = new Random();
+                // 修改 dice 內容
+                Dice dice = diceDao.getDice(id);
+                dice.setD1(random.nextInt(6)+1);
+                dice.setD2(random.nextInt(6)+1);
+                dice.setD3(random.nextInt(6)+1);
+                dice.setSum();
+                // 修改紀錄
+                diceDao.update(dice);
+                // 資料重整
+                showDice();
+            });
+
+        }));
 
         // 首要工作
         showDice();
