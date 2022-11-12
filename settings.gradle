@@ -15,3 +15,5 @@ dependencyResolutionManagement {
 rootProject.name = "Android_Jetpack_2022"
 include ':app'
 include ':app_lifecycle'
+include ':app_layout_login'
+include ':app_room_dice'
