@@ -47,7 +47,7 @@ public class DiceAdapter extends BaseAdapter {
         // Layout 配置
         LayoutInflater layoutInflater = LayoutInflater.from(context);
         // 將 R.layout.list_item 物件化
-        convertView = layoutInflater.inflate(R.layout.list_item, viewGroup);
+        convertView = layoutInflater.inflate(R.layout.list_item, null);
         TextView tvId = convertView.findViewById(R.id.tv_id);
         TextView tvD1 = convertView.findViewById(R.id.tv_d1);
         TextView tvD2 = convertView.findViewById(R.id.tv_d2);

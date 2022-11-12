@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.widget.ListView;
 import android.widget.TextView;
 
+import com.example.app_room_dice.adapter.DiceAdapter;
 import com.example.app_room_dice.dao.DiceDao;
 import com.example.app_room_dice.entity.Dice;
 import com.example.app_room_dice.room.DiceDatabase;
@@ -18,7 +20,8 @@ import java.util.concurrent.Executors;
 public class MainActivity extends AppCompatActivity {
     private DiceDao diceDao;
     private Context context;
-    private TextView tv;
+    private ListView listView;
+    private DiceAdapter diceAdapter;
     private FloatingActionButton fab;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,9 +29,13 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         // Init
         context = this; // 很重要! 容易忘記寫~
-        tv = findViewById(R.id.tv);
+        listView = findViewById(R.id.list_view);
         fab = findViewById(R.id.fab);
         diceDao = DiceDatabase.getInstance(context).diceDao();
+
+        // adapter 適配器
+        diceAdapter = new DiceAdapter(context);
+        listView.setAdapter(diceAdapter); // 設定 listview 的適配器
 
         // Event
         fab.setOnClickListener((view) -> {
@@ -59,7 +66,8 @@ public class MainActivity extends AppCompatActivity {
             List<Dice> diceList = diceDao.queryAll();
             // 透過 UI (主)執行緒來配置/變更畫面內容
             runOnUiThread(() -> {
-                tv.setText(diceList.toString());
+                diceAdapter.setDiceList(diceList); // 在適配器中配置新的 diceList
+                diceAdapter.notifyDataSetChanged(); // 通知適配器資料已經變更
                 setTitle(diceList.size() + "筆");
             });
         });

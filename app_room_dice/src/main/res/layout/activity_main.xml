@@ -13,10 +13,10 @@
 
         <include
             android:id="@+id/list_title"
-            android:layout="@layout/list_item" />
+            layout="@layout/list_item" />
 
         <ListView
-            android:id="@+id/list_item"
+            android:id="@+id/list_view"
             android:background="@drawable/custom_edittext"
             android:layout_margin="10dp"
             android:fastScrollEnabled="false"
