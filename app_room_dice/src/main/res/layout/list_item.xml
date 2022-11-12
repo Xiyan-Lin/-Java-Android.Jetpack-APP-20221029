@@ -4,9 +4,52 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="horizontal"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
     tools:ignore="MissingDefaultResource">
 
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:text="id"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
+    <TextView
+        android:id="@+id/tv_d1"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:text="D1"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_d2"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:text="D2"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_d3"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:text="D3"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+    <TextView
+        android:id="@+id/tv_sum"
+        android:layout_margin="10dp"
+        android:textSize="24dp"
+        android:text="SUM"
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
 
 </LinearLayout>
