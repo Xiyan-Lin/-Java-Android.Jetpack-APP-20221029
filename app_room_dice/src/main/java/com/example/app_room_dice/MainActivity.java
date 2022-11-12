@@ -1,8 +1,10 @@
 package com.example.app_room_dice;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -75,13 +77,24 @@ public class MainActivity extends AppCompatActivity {
         }));
 
         listView.setOnItemLongClickListener(((adapterView, view, position, id) -> {
-            Executors.newSingleThreadExecutor().execute(() -> {
-                Dice dice = diceDao.getDice(id);
-                // 刪除紀錄
-                diceDao.delete(dice);
-                // 資料重整
-                showDice();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setTitle("是否要刪除?");
+            builder.setPositiveButton("是", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Executors.newSingleThreadExecutor().execute(() -> {
+                        Dice dice = diceDao.getDice(id);
+                        // 刪除紀錄
+                        diceDao.delete(dice);
+                        // 資料重整
+                        showDice();
+                    });
+                }
             });
+            builder.setNegativeButton("取消", null);
+            // 建立對話視窗
+            AlertDialog dialog = builder.create();
+            dialog.show();
             return true; // 事件到此為止, 不繼續反映
         }));
 
