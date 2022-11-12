@@ -60,6 +60,10 @@ public class Dice {
         this.sum = sum;
     }
 
+    public void setSum() {
+        this.sum = d1 + d2 + d3;
+    }
+
     @Override
     public String toString() {
         return "Dice{" +

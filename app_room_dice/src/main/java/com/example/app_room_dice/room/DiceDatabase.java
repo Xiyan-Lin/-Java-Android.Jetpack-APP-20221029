@@ -17,6 +17,7 @@ public abstract class DiceDatabase extends RoomDatabase {
         if(diceDatabase == null) {
             diceDatabase = Room
                     .databaseBuilder(context, DiceDatabase.class, DATABASE_NAME)
+                    //.allowMainThreadQueries() // 允許在主執行緒上直接操作 room (不建議使用)
                     .build();
         }
         return diceDatabase;
