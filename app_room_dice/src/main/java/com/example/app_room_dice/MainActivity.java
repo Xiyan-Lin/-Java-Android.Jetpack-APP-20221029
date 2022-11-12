@@ -74,6 +74,17 @@ public class MainActivity extends AppCompatActivity {
 
         }));
 
+        listView.setOnItemLongClickListener(((adapterView, view, position, id) -> {
+            Executors.newSingleThreadExecutor().execute(() -> {
+                Dice dice = diceDao.getDice(id);
+                // 刪除紀錄
+                diceDao.delete(dice);
+                // 資料重整
+                showDice();
+            });
+            return true; // 事件到此為止, 不繼續反映
+        }));
+
         // 首要工作
         showDice();
     }
