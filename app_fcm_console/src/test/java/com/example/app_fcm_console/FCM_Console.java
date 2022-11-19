@@ -29,7 +29,7 @@ public class FCM_Console {
         FirebaseApp.initializeApp(options);
 
         // 要推播裝置的 token
-        String regToken = "";
+        String regToken = "c4IiI4fIQQKn8Oj0TPi_zk:APA91bGKyZIPtjLc3TD9GtZvYlZPRp8nudnMLJYNfrmf00kEL3Tt8DovFTaT4_0j3pUC7p9eFcsYB8jZYzjHekPK2RT7SBAmQm1FLPe92ZM68QMVl4cEKyWMK_FXsY2oUaoA5Zv4BBEM";
         Message message = Message.builder()
                 .putData("title", "Java 爪哇")
                 .putData("body", "Android " + new Random().nextInt(1000))
