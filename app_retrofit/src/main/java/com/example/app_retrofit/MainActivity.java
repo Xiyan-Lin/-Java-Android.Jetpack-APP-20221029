@@ -13,6 +13,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.app_retrofit.adapter.PostAdapter;
 import com.example.app_retrofit.api.Api;
@@ -30,13 +31,14 @@ public class MainActivity extends AppCompatActivity {
     private PostAdapter postAdapter;
     private ListView listView;
     private Context context;
-
+    private Api api;
+    private SwipeRefreshLayout swipeRefreshLayout;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         context = this;
-        Api api = RetrofitClient.getInstance().getApi();
+        api = RetrofitClient.getInstance().getApi();
 
         listView = findViewById(R.id.list_view);
         postAdapter = new PostAdapter(context);
@@ -61,7 +63,23 @@ public class MainActivity extends AppCompatActivity {
                             builder.setPositiveButton("修改", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialogInterface, int i) {
+                                    post.title = et.getText().toString();
+                                    try {
+                                        api.updatePost(post.id, post).enqueue(new Callback<Post>() {
+                                            @Override
+                                            public void onResponse(Call<Post> call, Response<Post> response) {
+                                                refresh();
+                                                Toast.makeText(context, "Update OK", Toast.LENGTH_SHORT).show();
+                                            }
 
+                                            @Override
+                                            public void onFailure(Call<Post> call, Throwable t) {
+                                                Toast.makeText(context, "Update Error", Toast.LENGTH_SHORT).show();
+                                            }
+                                        });
+                                    } catch (Exception e) {
+
+                                    }
                                 }
                             });
                             builder.setNegativeButton("離開", null);
@@ -83,32 +101,30 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
-        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+        swipeRefreshLayout = findViewById(R.id.swipeRefresh);
         swipeRefreshLayout.setOnRefreshListener(() -> {
-            api.getPosts().enqueue(new Callback<List<Post>>() {
-                @Override
-                public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                    Log.i("retrofit", response.body().toString());
-                    runOnUiThread(() -> {
-                        List<Post> postList = response.body();
-                        postAdapter.setPostList(postList);
-                        postAdapter.notifyDataSetChanged();
-                    });
-                    swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
-                }
-
-                @Override
-                public void onFailure(Call<List<Post>> call, Throwable t) {
-                    Log.i("retrofit", t.toString());
-                    swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
-                }
-            });
+            refresh();
         });
+    }
 
+    private void refresh() {
+        api.getPosts().enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                Log.i("retrofit", response.body().toString());
+                runOnUiThread(() -> {
+                    List<Post> postList = response.body();
+                    postAdapter.setPostList(postList);
+                    postAdapter.notifyDataSetChanged();
+                });
+                swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
+            }
 
-
-
-
-
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.i("retrofit", t.toString());
+                swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
+            }
+        });
     }
 }
