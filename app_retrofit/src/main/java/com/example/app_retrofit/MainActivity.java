@@ -26,25 +26,23 @@ public class MainActivity extends AppCompatActivity {
 
         TextView tv = findViewById(R.id.tv);
 
-        new Thread(()->{
 
-            Api api = RetrofitClient.getInstance().getApi();
-            api.getPosts().enqueue(new Callback<List<Post>>() {
-                @Override
-                public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                    Log.i("retrofit", response.body().toString());
-                    runOnUiThread(() -> {
-                        tv.setText(response.body().toString());
-                    });
-                }
 
-                @Override
-                public void onFailure(Call<List<Post>> call, Throwable t) {
-                    Log.i("retrofit", t.toString());
-                }
-            });
+        Api api = RetrofitClient.getInstance().getApi();
+        api.getPosts().enqueue(new Callback<List<Post>>() {
+            @Override
+            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                Log.i("retrofit", response.body().toString());
+                runOnUiThread(() -> {
+                    tv.setText(response.body().toString());
+                });
+            }
 
-        }).start();
+            @Override
+            public void onFailure(Call<List<Post>> call, Throwable t) {
+                Log.i("retrofit", t.toString());
+            }
+        });
 
 
 
