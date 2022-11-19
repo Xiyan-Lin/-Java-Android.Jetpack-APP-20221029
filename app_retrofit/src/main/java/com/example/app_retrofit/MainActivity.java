@@ -1,6 +1,7 @@
 package com.example.app_retrofit;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -24,25 +25,34 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TextView tv = findViewById(R.id.tv);
-
-
-
         Api api = RetrofitClient.getInstance().getApi();
-        api.getPosts().enqueue(new Callback<List<Post>>() {
-            @Override
-            public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
-                Log.i("retrofit", response.body().toString());
-                runOnUiThread(() -> {
-                    tv.setText(response.body().toString());
-                });
-            }
 
-            @Override
-            public void onFailure(Call<List<Post>> call, Throwable t) {
-                Log.i("retrofit", t.toString());
-            }
+        TextView tv = findViewById(R.id.tv);
+        SwipeRefreshLayout swipeRefreshLayout = findViewById(R.id.swipeRefresh);
+
+
+
+        swipeRefreshLayout.setOnRefreshListener(() -> {
+            api.getPosts().enqueue(new Callback<List<Post>>() {
+                @Override
+                public void onResponse(Call<List<Post>> call, Response<List<Post>> response) {
+                    Log.i("retrofit", response.body().toString());
+                    runOnUiThread(() -> {
+                        tv.setText(response.body().toString());
+                    });
+                    swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
+                }
+
+                @Override
+                public void onFailure(Call<List<Post>> call, Throwable t) {
+                    Log.i("retrofit", t.toString());
+                    swipeRefreshLayout.setRefreshing(false); // 將旋轉鈕關閉
+                }
+            });
         });
+
+
+
 
 
 
