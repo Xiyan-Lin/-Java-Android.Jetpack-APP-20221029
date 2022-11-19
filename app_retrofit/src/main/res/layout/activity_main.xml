@@ -12,12 +12,20 @@
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-        <TextView
-            android:id="@+id/tv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"
-            tools:ignore="InvalidId" />
+
+        <include
+            android:id="@+id/list_title"
+            layout="@layout/list_item" />
+
+        <ListView
+            android:id="@+id/list_view"
+            android:background="@drawable/custom_edittext"
+            android:layout_margin="10dp"
+            android:fastScrollEnabled="false"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:listitem="@layout/list_item"/>
+
     </LinearLayout>
 
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
