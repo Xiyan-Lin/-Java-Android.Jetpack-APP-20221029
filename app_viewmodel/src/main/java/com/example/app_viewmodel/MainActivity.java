@@ -3,29 +3,39 @@ package com.example.app_viewmodel;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private EditText editHeight, editWeight;
-    private TextView textResult, textRecord;
+    private TextView textResult;
     private Button button;
+    private ListView listView;
     private MyViewModel myViewModel;
+    private BmiAdapter bmiAdapter;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        context = this;
 
         myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
         editHeight = findViewById(R.id.edit_height);
         editWeight = findViewById(R.id.edit_weight);
         textResult = findViewById(R.id.text_result);
-        textRecord = findViewById(R.id.text_record);
         button = findViewById(R.id.button);
+
+        // adapter 適配器
+        bmiAdapter = new BmiAdapter(context);
+        listView = findViewById(R.id.list_view);
+        listView.setAdapter(bmiAdapter); // 設定 listview 的適配器
 
         button.setOnClickListener((view -> {
             double h = Double.parseDouble(editHeight.getText().toString());
@@ -52,8 +62,8 @@ public class MainActivity extends AppCompatActivity {
         editWeight.setText(String.format("%.1f", lastBmi.getWeight()));
         textResult.setText(String.format("%.2f", lastBmi.getBmi()));
         // 放入歷史紀錄
-        textRecord.setText(""); // 清空
-        bmiList.forEach(bmi -> textRecord.append(bmi.toString()));
+        bmiAdapter.setBmiList(bmiList); // 在適配器中配置新的 bmiList
+        bmiAdapter.notifyDataSetChanged(); // 通知變更
     }
 
 
