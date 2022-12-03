@@ -31,7 +31,13 @@ public class MainActivity extends AppCompatActivity {
             double w = Double.parseDouble(editWeight.getText().toString());
             Bmi bmi = new Bmi(h, w);
             myViewModel.addBmi(bmi);
+            dataBinding();
         }));
+    }
+
+    @Override
+    protected void onStart() {
+        dataBinding();
     }
 
     // data binding
