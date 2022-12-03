@@ -9,6 +9,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Android_Jetpack_2022">
         <activity
+            android:windowSoftInputMode="adjustPan"
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

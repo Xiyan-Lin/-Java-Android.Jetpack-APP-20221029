@@ -57,7 +57,7 @@ public class BmiAdapter extends BaseAdapter {
         Bmi bmi = bmiList.get(i);
         holder.tvHeight.setText(bmi.getHeight() + "");
         holder.tvWeight.setText(bmi.getWeight() + "");
-        holder.tvResult.setText(bmi.getBmi() + "");
+        holder.tvResult.setText(String.format("%.2f", bmi.getBmi()));
 
         return convertView;
     }
