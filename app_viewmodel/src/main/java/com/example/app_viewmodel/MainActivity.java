@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        setTitle("BMI 計算紀錄器");
         // View UI
         myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
         editHeight = findViewById(R.id.edit_height);
