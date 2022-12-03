@@ -40,7 +40,7 @@
             android:textSize="30dp" />
 
         <TextView
-            android:id="@+id/text_view"
+            android:id="@+id/text_result"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
@@ -48,28 +48,21 @@
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+
+    <LinearLayout
         android:layout_weight="1"
-        android:padding="30dp">
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/text_record"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
-
-            <TextView
-                android:id="@+id/text_result"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="40dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
+            android:layout_height="match_parent"
+            android:textSize="40dp" />
 
 
+    </LinearLayout>
 
 
 </LinearLayout>
