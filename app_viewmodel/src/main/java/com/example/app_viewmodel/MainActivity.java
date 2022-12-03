@@ -26,17 +26,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         context = this;
 
+        // View UI
         myViewModel = ViewModelProviders.of(this).get(MyViewModel.class);
         editHeight = findViewById(R.id.edit_height);
         editWeight = findViewById(R.id.edit_weight);
         textResult = findViewById(R.id.text_result);
         button = findViewById(R.id.button);
 
-        // adapter 適配器
+        // Adapter 適配器
         bmiAdapter = new BmiAdapter(context);
         listView = findViewById(R.id.list_view);
         listView.setAdapter(bmiAdapter); // 設定 listview 的適配器
 
+        // Event
         button.setOnClickListener((view -> {
             double h = Double.parseDouble(editHeight.getText().toString());
             double w = Double.parseDouble(editWeight.getText().toString());
@@ -52,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         dataBinding();
     }
 
-    // data binding
+    // data binding: 資料配置
     private void dataBinding() {
         List<Bmi> bmiList = myViewModel.getBmiList();
         if(bmiList.size() <= 0) return;
