@@ -55,11 +55,17 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/text_record"
+        <include
+            android:id="@+id/list_title"
+            layout="@layout/list_item" />
+
+        <ListView
+            android:id="@+id/list_view"
+            android:layout_margin="10dp"
+            android:fastScrollEnabled="false"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="40dp" />
+            tools:listitem="@layout/list_item"/>
 
 
     </LinearLayout>
