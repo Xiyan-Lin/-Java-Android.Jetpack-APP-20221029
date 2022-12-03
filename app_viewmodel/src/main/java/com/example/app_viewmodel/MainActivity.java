@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         editWeight = findViewById(R.id.edit_weight);
         textResult = findViewById(R.id.text_result);
         textRecord = findViewById(R.id.text_record);
+        button = findViewById(R.id.button);
 
         button.setOnClickListener((view -> {
             double h = Double.parseDouble(editHeight.getText().toString());
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onStart() {
+        super.onStart();
         dataBinding();
     }
 
