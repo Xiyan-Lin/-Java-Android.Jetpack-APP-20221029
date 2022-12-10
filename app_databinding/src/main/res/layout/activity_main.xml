@@ -18,6 +18,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:gravity="center_vertical|center_horizontal"
+        android:layout_margin="50dp"
+        android:background="@drawable/lavender_border"
         tools:context=".MainActivity">
 
         <TextView
