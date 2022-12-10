@@ -25,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
         myDatabase = MyDatabase.getInstance(context);
         StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.getLiveDataStudents().observe(this, (students) -> {
+            // 當 student 資料表紀錄有變更時要做的事
 
         });
     }
