@@ -35,4 +35,9 @@ public class Student {
         this.name = name;
         this.age = age;
     }
+
+    @Ignore
+    public Student() {
+
+    }
 }

@@ -1,14 +1,18 @@
 package com.example.app_room_livedata_viewmodel;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.loader.content.AsyncTaskLoader;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -50,9 +54,34 @@ public class MainActivity extends AppCompatActivity {
 
         // Add button
         findViewById(R.id.btnAdd).setOnClickListener(view -> {
+            /*
             Student student = new Student(faker.name().firstName(), new Random().nextInt(20) + 20);
-            //studentViewModel.getMyDatabase().studentDao().insert(student);
             new AccessRoomTask(student).execute("add");
+            */
+            LayoutInflater layoutInflater = LayoutInflater.from(context);
+            // Layout
+            View dialogLayout = layoutInflater.inflate(R.layout.dialog_layout_student, null);
+            // View items
+            EditText etName = dialogLayout.findViewById(R.id.etName);
+            EditText etAge = dialogLayout.findViewById(R.id.etAge);
+            etName.setText(faker.name().firstName());
+            etAge.setText("" + (new Random().nextInt(20) + 20));
+            // AlertDialog
+            AlertDialog.Builder dialog = new AlertDialog.Builder(context);
+            dialog.setTitle("Add Student");
+            dialog.setView(dialogLayout);
+            dialog.setPositiveButton("Add", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Student student = new Student();
+                    student.name = etName.getText().toString();
+                    student.age = Integer.valueOf(etAge.getText().toString());
+                    new AccessRoomTask(student).execute("add");
+                }
+            });
+            dialog.setNegativeButton("Cancel", null);
+            dialog.create().show();
+
         });
 
         // Update
