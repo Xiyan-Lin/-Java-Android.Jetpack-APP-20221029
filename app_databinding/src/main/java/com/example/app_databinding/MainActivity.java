@@ -15,6 +15,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         //setContentView(R.layout.activity_main);
         ActivityMainBinding activityMainBinding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        activityMainBinding.setEventHandle(new EventHandleListener(this));
 
         Book book = new Book("Android", "John", 3);
         activityMainBinding.setBook(book);

@@ -6,6 +6,9 @@
         <variable
             name="book"
             type="com.example.app_databinding.Book" />
+        <variable
+            name="EventHandle"
+            type="com.example.app_databinding.EventHandleListener" />
     </data>
 
     <LinearLayout
@@ -14,6 +17,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:gravity="center_vertical|center_horizontal"
         tools:context=".MainActivity">
 
         <TextView
@@ -43,6 +47,13 @@
             android:text="@{BookRatingUtil.getRatingString(book.rating)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
+
+        <Button
+            android:text="Click me"
+            android:onClick="@{EventHandle::onButtonClicked}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
