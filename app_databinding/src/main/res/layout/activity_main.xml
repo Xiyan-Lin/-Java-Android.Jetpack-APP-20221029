@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="com.example.app_databinding.BookRatingUtil" />
         <variable
             name="book"
             type="com.example.app_databinding.Book" />
@@ -26,6 +27,20 @@
             android:id="@+id/tvAuthor"
             android:textSize="30dp"
             android:text="@{book.author}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvRating"
+            android:textSize="30dp"
+            android:text="@{Double.toString(Math.pow(book.rating, book.rating))}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+        <TextView
+            android:id="@+id/tvStars"
+            android:textSize="30dp"
+            android:text="@{BookRatingUtil.getRatingString(book.rating)}"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
