@@ -2,8 +2,10 @@ package com.example.app_room_livedata_viewmodel;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.loader.content.AsyncTaskLoader;
 
 import android.content.Context;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -20,6 +22,7 @@ import java.util.List;
 import java.util.Random;
 
 public class MainActivity extends AppCompatActivity {
+    private StudentViewModel studentViewModel;
     private List<Student> students;
     private StudentAdapter studentAdapter;
     private Context context;
@@ -36,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         studentAdapter = new StudentAdapter(context, students);
         listStudent.setAdapter(studentAdapter);
 
-        StudentViewModel studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.getLiveDataStudents().observe(this, (students) -> {
             // 當 student 資料表紀錄有變更時要做的事
             this.students.clear();
@@ -47,7 +50,8 @@ public class MainActivity extends AppCompatActivity {
         // Add button
         findViewById(R.id.btnAdd).setOnClickListener(view -> {
             Student student = new Student(faker.name().firstName(), new Random().nextInt(20) + 20);
-            studentViewModel.getMyDatabase().studentDao().insert(student);
+            //studentViewModel.getMyDatabase().studentDao().insert(student);
+            new AccessRoomTask(student).execute("add");
         });
 
         // Update
@@ -55,14 +59,41 @@ public class MainActivity extends AppCompatActivity {
             Student student = students.get(position);
             student.name = faker.name().firstName();
             student.age = new Random().nextInt(20) + 20;
-            studentViewModel.getMyDatabase().studentDao().update(student);
+            new AccessRoomTask(student).execute("update");
         });
 
         // Delete
         listStudent.setOnItemLongClickListener((adapterView, view, position, id) -> {
-            studentViewModel.getMyDatabase().studentDao().delete(students.get(position));
+            Student student = students.get(position);
+            new AccessRoomTask(student).execute("delete");
             return true;
         });
 
     }
+
+    // Add/Update/Delete Thread Task
+    private class AccessRoomTask extends AsyncTask<String, Void, Void> {
+        private Student student;
+        AccessRoomTask(Student student) {
+            this.student = student;
+        }
+
+        @Override
+        protected Void doInBackground(String... mode) {
+            switch (mode[0]) {
+                case "add":
+                    studentViewModel.getMyDatabase().studentDao().insert(student);
+                    break;
+                case "update":
+                    studentViewModel.getMyDatabase().studentDao().update(student);
+                    break;
+                case "delete":
+                    studentViewModel.getMyDatabase().studentDao().delete(student);
+                    break;
+            }
+
+            return null;
+        }
+    }
+
 }
