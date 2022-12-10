@@ -54,6 +54,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
+        <Button
+            android:text="Click me2"
+            android:onClick="@{EventHandle::onButtonClicked2}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
 
     </LinearLayout>
 
