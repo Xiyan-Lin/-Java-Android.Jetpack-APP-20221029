@@ -25,7 +25,7 @@ public interface StudentDao {
     @Query("SELECT id, name, age FROM student WHERE id=:id")
     Student getById(int id);
 
-    @Query("SELECT id, name, age FROM student")
+    @Query("SELECT id, name, age FROM student order by id desc")
     LiveData<List<Student>> queryAll();
 
 }

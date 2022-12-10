@@ -16,6 +16,7 @@ public abstract class MyDatabase extends RoomDatabase {
         if(databaseInstance == null) {
                 databaseInstance = Room
                         .databaseBuilder(context.getApplicationContext(), MyDatabase.class, DATABASE_NAME)
+                        .allowMainThreadQueries() // 允許在主執行緒(UI Thread)上操作資料庫
                         .build();
         }
         return databaseInstance;
