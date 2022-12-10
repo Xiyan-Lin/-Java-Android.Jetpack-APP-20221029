@@ -23,10 +23,10 @@ public class MainActivity extends AppCompatActivity {
         TimerWithLiveDataViewModel timerWithLiveDataViewModel =
                 ViewModelProviders.of(this).get(TimerWithLiveDataViewModel.class);
         // 得到 LiveData
-        MutableLiveData<Integer> liveData =
+        MutableLiveData<Integer> crrentSecondLiveData =
                 (MutableLiveData<Integer>)timerWithLiveDataViewModel.getCurrentSecond();
         // 觀察數據變化
-        liveData.observe(this, (second) -> {
+        crrentSecondLiveData.observe(this, (second) -> {
             tvTime.setText(second + "");
         });
         // 開始計時
