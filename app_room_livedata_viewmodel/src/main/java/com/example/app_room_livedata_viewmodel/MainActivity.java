@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.example.app_room_livedata_viewmodel.adapter.StudentAdapter;
 import com.example.app_room_livedata_viewmodel.database.MyDatabase;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
     // Add/Update/Delete Thread Task
     private class AccessRoomTask extends AsyncTask<String, Void, Void> {
         private Student student;
+
         AccessRoomTask(Student student) {
             this.student = student;
         }
@@ -91,8 +93,13 @@ public class MainActivity extends AppCompatActivity {
                     studentViewModel.getMyDatabase().studentDao().delete(student);
                     break;
             }
-
             return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void unused) {
+            super.onPostExecute(unused);
+            Toast.makeText(context, "Room Access OK !", Toast.LENGTH_SHORT).show();
         }
     }
 
