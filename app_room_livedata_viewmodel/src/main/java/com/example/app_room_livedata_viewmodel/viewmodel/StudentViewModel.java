@@ -23,4 +23,8 @@ public class StudentViewModel extends AndroidViewModel {
     public LiveData<List<Student>> getLiveDataStudents() {
         return liveDataStudents;
     }
+
+    public MyDatabase getMyDatabase() {
+        return myDatabase;
+    }
 }
