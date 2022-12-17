@@ -16,16 +16,11 @@ import java.util.List;
 public class StudentViewModel extends AndroidViewModel {
     private MyDatabase myDatabase;
     private LiveData<List<Student>> liveDataStudents;
-    private RecyclerView.Adapter adapter;
 
     public StudentViewModel(@NonNull Application application) {
         super(application);
         myDatabase = MyDatabase.getInstance(application);
         liveDataStudents = myDatabase.studentDao().queryAll();
-    }
-
-    public void setAdapter(RecyclerView.Adapter adapter) {
-        this.adapter = adapter;
     }
 
     public LiveData<List<Student>> getLiveDataStudents() {
