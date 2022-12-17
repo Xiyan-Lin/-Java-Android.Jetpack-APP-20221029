@@ -45,9 +45,10 @@ public class MainActivity extends AppCompatActivity {
         // ViewModel
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.setAdapter(recyclerViewAdapter);
-        studentViewModel.getLiveDataStudents().observe(this, (students) -> {
+        studentViewModel.getLiveDataStudents().observe(this, (newStudents) -> {
+            Log.i("MyLog", studentViewModel.getStudentCount() + "");
             students.clear();
-            students.addAll(students);
+            students.addAll(newStudents);
             recyclerViewAdapter.notifyDataSetChanged();
         });
         Log.i("MyLog", studentViewModel.getStudentCount() + "");
