@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 
 import com.example.app_databinding_recyclerview_room.adapter.RecyclerViewAdapter;
 import com.example.app_databinding_recyclerview_room.databinding.ActivityMainBinding;
@@ -43,12 +44,13 @@ public class MainActivity extends AppCompatActivity {
 
         // ViewModel
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
+        studentViewModel.setAdapter(recyclerViewAdapter);
         studentViewModel.getLiveDataStudents().observe(this, (students) -> {
             students.clear();
             students.addAll(students);
             recyclerViewAdapter.notifyDataSetChanged();
         });
-
+        Log.i("MyLog", studentViewModel.getStudentCount() + "");
         if(studentViewModel.getStudentCount() == 0) {
             studentViewModel.addStudent(new Student("John", 18));
             studentViewModel.addStudent(new Student("Mary", 19));
