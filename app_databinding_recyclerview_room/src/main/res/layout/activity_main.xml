@@ -12,6 +12,7 @@
 
         <Button
             android:text="add"
+            android:onClick="addStudent"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 

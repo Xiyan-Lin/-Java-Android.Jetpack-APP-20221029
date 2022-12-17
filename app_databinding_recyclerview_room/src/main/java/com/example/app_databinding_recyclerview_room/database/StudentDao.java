@@ -22,7 +22,7 @@ public interface StudentDao {
     @Delete
     void delete(Student student);
 
-    @Query("select id, name, age from student")
+    @Query("select id, name, age from student order by id desc")
     LiveData<List<Student>> queryAll();
 
     @Query("select count(id) from student")
