@@ -25,6 +25,11 @@ public interface StudentDao {
     @Query("select id, name, age from student")
     LiveData<List<Student>> queryAll();
 
+    @Query("select count(id) from student")
+    int getCount();
+
     @Query("select id, name, age from student where id = :id")
     Student getById(int id);
+
+
 }

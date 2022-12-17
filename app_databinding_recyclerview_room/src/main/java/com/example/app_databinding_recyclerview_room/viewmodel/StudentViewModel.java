@@ -26,4 +26,11 @@ public class StudentViewModel extends AndroidViewModel {
         return liveDataStudents;
     }
 
+    public int getStudentCount() {
+        return myDatabase.studentDao().getCount();
+    }
+
+    public void addStudent(Student student) {
+        myDatabase.studentDao().add(student);
+    }
 }

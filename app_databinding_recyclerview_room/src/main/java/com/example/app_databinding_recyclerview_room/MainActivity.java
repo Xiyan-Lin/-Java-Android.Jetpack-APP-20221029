@@ -49,5 +49,11 @@ public class MainActivity extends AppCompatActivity {
             recyclerViewAdapter.notifyDataSetChanged();
         });
 
+        if(studentViewModel.getStudentCount() == 0) {
+            studentViewModel.addStudent(new Student("John", 18));
+            studentViewModel.addStudent(new Student("Mary", 19));
+            studentViewModel.addStudent(new Student("Bob", 20));
+        }
+
     }
 }
