@@ -15,11 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <ImageView
+        <de.hdodenhof.circleimageview.CircleImageView
             app:itemImage="@{student.id}"
-            tools:srcCompat="@tools:sample/avatars"
+            app:civ_border_width="2dp"
+            app:civ_border_color="#cccccc"
+            android:contentDescription="me"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            tools:srcCompat="@tools:sample/avatars" />
 
         <LinearLayout
             android:paddingLeft="12dp"

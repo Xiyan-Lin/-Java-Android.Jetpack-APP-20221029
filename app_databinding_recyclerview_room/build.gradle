@@ -51,4 +51,7 @@ dependencies {
 
     // javafaker
     implementation group: 'com.github.javafaker', name: 'javafaker', version: '1.0.2'
+
+    // 圓形的 ImageView
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 }
