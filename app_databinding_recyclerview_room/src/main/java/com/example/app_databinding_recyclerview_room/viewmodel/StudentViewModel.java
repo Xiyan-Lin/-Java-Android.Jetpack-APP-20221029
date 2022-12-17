@@ -1,6 +1,7 @@
 package com.example.app_databinding_recyclerview_room.viewmodel;
 
 import android.app.Application;
+import android.os.AsyncTask;
 
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
@@ -31,11 +32,31 @@ public class StudentViewModel extends AndroidViewModel {
         return liveDataStudents;
     }
 
+    // 若要使用此方法則需要另外實作 AsyncTask
     public int getStudentCount() {
         return myDatabase.studentDao().getCount();
     }
 
     public void addStudent(Student student) {
-        myDatabase.studentDao().add(student);
+        new StudentTask().execute(student, "add");
     }
+
+    class StudentTask extends AsyncTask<Object, Void, Void> {
+        @Override
+        protected Void doInBackground(Object... objs) {
+            Student student = (Student)objs[0];
+            String mode = objs[1] + "";
+            switch (mode) {
+                case "add":
+                    myDatabase.studentDao().add(student);
+                    break;
+                case "update":
+                    break;
+                case "delete":
+                    break;
+            }
+            return null;
+        }
+    }
+
 }
