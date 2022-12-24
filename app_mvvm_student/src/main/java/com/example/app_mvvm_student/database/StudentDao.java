@@ -28,10 +28,10 @@ public interface StudentDao {
     @Query("DELETE FROM student where id not in (:ids)")
     public void deleteNotInId(int[] ids);
 
-    @Query("SELECT id, name, age FROM student order by id desc")
+    @Query("SELECT id, name, age, imageBase64 FROM student order by id desc")
     LiveData<List<Student>> queryAll();
 
-    @Query("SELECT id, name, age FROM student WHERE id = :id")
+    @Query("SELECT id, name, age, imageBase64 FROM student WHERE id = :id")
     LiveData<Student> getById(int id);
 
 }
