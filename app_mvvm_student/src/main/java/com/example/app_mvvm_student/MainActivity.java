@@ -9,6 +9,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.example.app_mvvm_student.adapter.RecyclerViewAdapter;
@@ -46,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         studentViewModel = ViewModelProviders.of(this).get(StudentViewModel.class);
         studentViewModel.setAdapter(recyclerViewAdapter);
         studentViewModel.queryLiveDataStudents().observe(this, (List<Student> studentList) -> {
+            Log.i("MyLog", "observe 觀察到資料異動了");
             students.clear();
             students.addAll(studentList);
             recyclerViewAdapter.notifyDataSetChanged();
@@ -65,5 +67,6 @@ public class MainActivity extends AppCompatActivity {
                 faker.name().lastName(), new Random().nextInt(20) + 20
         );
         studentViewModel.createStudent(student);
+        Log.i("MyLog", "新增一筆資料");
     }
 }
