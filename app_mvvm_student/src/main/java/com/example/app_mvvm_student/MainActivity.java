@@ -8,6 +8,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -18,7 +20,9 @@ import com.example.app_mvvm_student.model.Student;
 import com.example.app_mvvm_student.viewmodel.StudentViewModel;
 import com.github.javafaker.Faker;
 
+import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Random;
 
@@ -76,8 +80,13 @@ public class MainActivity extends AppCompatActivity {
 
     // 新增按鈕
     public void addButton(View view) {
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s0);
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] imageBytes = byteArrayOutputStream.toByteArray();
+        String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
         Student student = new Student(
-                faker.name().lastName(), new Random().nextInt(20) + 20
+                faker.name().lastName(), new Random().nextInt(20) + 20, imageBase64
         );
         studentViewModel.createStudent(student);
         Log.i("MyLog", "新增一筆資料");
