@@ -57,13 +57,15 @@ public class StudentRepository {
             @Override
             public void onResponse(Call<List<Student>> call, Response<List<Student>> response) {
                 List<Student> students = response.body();
-                // 2. 將最新資料複製給 room
-                for(Student student: students) {
-                    studentDao.insert(student);
-                }
-                // 3. 刪除遠端有但是本地端沒有的資料(同步)
-                int[] ids = students.stream().mapToInt(s -> s.id).toArray(); // 遠端已有的 id
-                studentDao.deleteNotInId(ids);
+                AsyncTask.execute(() -> {
+                    // 2. 將最新資料複製給 room
+                    for(Student student: students) {
+                        studentDao.insert(student);
+                    }
+                    // 3. 刪除遠端有但是本地端沒有的資料(同步)
+                    int[] ids = students.stream().mapToInt(s -> s.id).toArray(); // 遠端已有的 id
+                    studentDao.deleteNotInId(ids);
+                });
             }
 
             @Override
