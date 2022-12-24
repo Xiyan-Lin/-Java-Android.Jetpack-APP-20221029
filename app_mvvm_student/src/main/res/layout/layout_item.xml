@@ -15,6 +15,7 @@
         android:layout_height="wrap_content">
 
         <ImageView
+            app:itemImage="@{student.imageBase64}"
             tools:srcCompat="@tools:sample/avatars"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
