@@ -59,6 +59,19 @@ public class MainActivity extends AppCompatActivity {
             swipeRefresh.setRefreshing(false); // 將 swipeRefresh 旋轉鈕關閉
         });
 
+        // ItemClick 發生 -> Update
+        recyclerViewAdapter.setMyItemClickListener((position, view) -> {
+            Student student = students.get(position);
+            student.name = faker.name().lastName();
+            student.age = new Random().nextInt(20) + 20;
+            studentViewModel.updateStudent(student);
+        });
+
+        // ItemLongClick 發生 -> Delete
+        recyclerViewAdapter.setMyItemLongClickListener((position, view) -> {
+            Student student = students.get(position);
+            studentViewModel.deleteStudent(student);
+        });
     }
 
     // 新增按鈕
