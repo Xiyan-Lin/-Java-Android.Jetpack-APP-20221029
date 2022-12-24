@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerViewAdapter.setMyItemLongClickListener((position, view) -> {
             Student student = students.get(position);
             studentViewModel.deleteStudent(student);
+            studentViewModel.refresh();
         });
     }
 
