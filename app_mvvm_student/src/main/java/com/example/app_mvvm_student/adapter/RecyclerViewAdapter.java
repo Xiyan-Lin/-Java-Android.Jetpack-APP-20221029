@@ -15,10 +15,30 @@ import com.example.app_mvvm_student.model.Student;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
+    // 因為 RecyclerView 沒有實作 ItemClickListener
+    // 所以我們可以自行在 MyViewHolder 中實現
+    public interface MyItemClickListener {
+        void onItemClick(int position, View view);
+    }
+    public interface MyItemLongClickListener {
+        void onItemLongClick(int position, View view);
+    }
+
+    private MyItemClickListener myItemClickListener;
+    private MyItemLongClickListener myItemLongClickListener;
+
     private List<Student> students;
 
     public RecyclerViewAdapter(List<Student> students) {
         this.students = students;
+    }
+
+    public void setMyItemClickListener(MyItemClickListener myItemClickListener) {
+        this.myItemClickListener = myItemClickListener;
+    }
+
+    public void setMyItemLongClickListener(MyItemLongClickListener myItemLongClickListener) {
+        this.myItemLongClickListener = myItemLongClickListener;
     }
 
     @NonNull
@@ -40,12 +60,33 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return students.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder {
+    class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
         LayoutItemBinding layoutItemBinding;
 
         public MyViewHolder(@NonNull LayoutItemBinding itemView) {
             super(itemView.getRoot());
             layoutItemBinding = itemView;
+            if (myItemClickListener != null) {
+                itemView.getRoot().setOnClickListener(this);
+            }
+            if (myItemLongClickListener != null) {
+                itemView.getRoot().setOnLongClickListener(this);
+            }
+        }
+
+        @Override
+        public void onClick(View view) {
+            if(myItemClickListener != null) {
+                myItemClickListener.onItemClick(getAdapterPosition(), view);
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View view) {
+            if(myItemLongClickListener != null) {
+                myItemLongClickListener.onItemLongClick(getAdapterPosition(), view);
+            }
+            return true;
         }
     }
 
