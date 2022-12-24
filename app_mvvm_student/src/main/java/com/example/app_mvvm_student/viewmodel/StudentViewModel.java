@@ -8,6 +8,7 @@ import androidx.lifecycle.LiveData;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.app_mvvm_student.api.Api;
+import com.example.app_mvvm_student.api.RetrofitClient;
 import com.example.app_mvvm_student.database.MyDatabase;
 import com.example.app_mvvm_student.database.StudentDao;
 import com.example.app_mvvm_student.model.Student;
@@ -26,7 +27,7 @@ public class StudentViewModel extends AndroidViewModel {
         super(application);
         myDatabase = MyDatabase.getInstance(application);
         StudentDao studentDao = myDatabase.studentDao();
-        Api api = null;
+        Api api = RetrofitClient.getInstance().getApi();
         studentRepository = new StudentRepository(studentDao, api);
         liveDataStudents = studentRepository.queryStudents();
     }
