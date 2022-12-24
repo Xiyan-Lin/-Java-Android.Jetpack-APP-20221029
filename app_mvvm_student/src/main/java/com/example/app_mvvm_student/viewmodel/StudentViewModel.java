@@ -42,4 +42,8 @@ public class StudentViewModel extends AndroidViewModel {
     public void createStudent(Student student) {
         studentRepository.addStudent(student);
     }
+
+    public LiveData<List<Student>> queryLiveDataStudents() {
+        return liveDataStudents;
+    }
 }
