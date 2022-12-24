@@ -47,7 +47,34 @@ public class StudentRepository {
                 Log.i("MyLog", "新增失敗: " + this.getClass().getSimpleName());
             }
         });
+    }
 
+    public void updateStudent(Student student) {
+        api.updateStudent(student.id, student).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                AsyncTask.execute(() -> {studentDao.update(response.body());});
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.i("MyLog", "修改失敗: " + this.getClass().getSimpleName());
+            }
+        });
+    }
+
+    public void deleteStudent(Student student) {
+        api.deleteStudent(student.id).enqueue(new Callback<Student>() {
+            @Override
+            public void onResponse(Call<Student> call, Response<Student> response) {
+                AsyncTask.execute(() -> {studentDao.delete(response.body());});
+            }
+
+            @Override
+            public void onFailure(Call<Student> call, Throwable t) {
+                Log.i("MyLog", "刪除失敗: " + this.getClass().getSimpleName());
+            }
+        });
     }
 
     // 使用者下拉重整畫面時
