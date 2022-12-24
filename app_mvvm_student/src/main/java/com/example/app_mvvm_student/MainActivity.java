@@ -87,6 +87,7 @@ public class MainActivity extends AppCompatActivity {
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
         String imageBase64 = Base64.getEncoder().encodeToString(imageBytes);
+        Log.i("MyLog", "imageBase64 length: " + imageBase64.length());
         Student student = new Student(
                 faker.name().lastName(), new Random().nextInt(20) + 20, imageBase64
         );
