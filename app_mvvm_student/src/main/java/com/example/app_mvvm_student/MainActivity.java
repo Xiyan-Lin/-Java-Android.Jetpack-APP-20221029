@@ -80,7 +80,8 @@ public class MainActivity extends AppCompatActivity {
 
     // 新增按鈕
     public void addButton(View view) {
-        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.s0);
+        int resId = context.getResources().getIdentifier("s" + (students.size()%10), "drawable", context.getPackageName());
+        Bitmap bitmap = BitmapFactory.decodeResource(getResources(), resId);
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
         byte[] imageBytes = byteArrayOutputStream.toByteArray();
