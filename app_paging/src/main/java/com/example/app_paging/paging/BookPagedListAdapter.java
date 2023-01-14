@@ -64,8 +64,8 @@ public class BookPagedListAdapter extends PagedListAdapter<Book, BookPagedListAd
         holder.bookImage.setOnLongClickListener(view -> {
             Intent shareIntent = new Intent();
             shareIntent.setAction(Intent.ACTION_SEND);
-            shareIntent.putExtra(Intent.EXTRA_TEXT, book.getImage());
-            shareIntent.setType("image/*");
+            shareIntent.putExtra(Intent.EXTRA_TEXT, book.getTitle());
+            shareIntent.setType("text/plain");
             context.startActivity(Intent.createChooser(shareIntent, "好書分享"));
             return true;
         });
