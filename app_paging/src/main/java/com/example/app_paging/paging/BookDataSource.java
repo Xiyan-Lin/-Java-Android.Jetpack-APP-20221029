@@ -42,6 +42,22 @@ public class BookDataSource extends PageKeyedDataSource<Integer, Book> {
 
     @Override
     public void loadAfter(@NonNull LoadParams<Integer> params, @NonNull LoadCallback<Integer, Book> callback) {
+        RetrofitClient.getApiClient().getApiInterface().getBooks(Query.getSearchQueryStr(), params.key) // query, page
+                .enqueue(new Callback<BookApiResponse>() {
+                    @Override
+                    public void onResponse(Call<BookApiResponse> call, Response<BookApiResponse> response) {
+                        if(response.body() != null) {
+                            int keyPage = params.key + 1; // 指到下一頁
+                            // 將數據返回給 PagedList
+                            // PagedList = null 表示沒有下一頁, 數據請求完畢
+                            callback.onResult(response.body().getBooks(), keyPage);
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<BookApiResponse> call, Throwable t) {
+
+                    }
+                });
     }
 }
