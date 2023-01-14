@@ -6,6 +6,7 @@ import androidx.lifecycle.ViewModelProviders;
 import androidx.paging.PagedList;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -41,5 +42,10 @@ public class MainActivity extends AppCompatActivity {
         });
 
         // Refresh
+        SwipeRefreshLayout swipeRefresh = findViewById(R.id.swipeRefresh);
+        swipeRefresh.setOnRefreshListener(() -> { // 實作 onRefresh() 方法
+            userViewModel.refresh(); // 重整
+            swipeRefresh.setRefreshing(false); // 關閉旋轉圖示
+        });
     }
 }
