@@ -20,7 +20,7 @@ import com.squareup.picasso.Picasso;
 
 public class UserAdapter extends PagedListAdapter<User, UserAdapter.UserViewHolder> {
     private Context context;
-    protected UserAdapter(Context context) {
+    public UserAdapter(Context context) {
         super(diffCallback);
         this.context = context;
     }
