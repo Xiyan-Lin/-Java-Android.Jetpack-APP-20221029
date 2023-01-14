@@ -1,6 +1,7 @@
 package com.example.app_paging.paging;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -57,9 +58,17 @@ public class BookPagedListAdapter extends PagedListAdapter<Book, BookPagedListAd
         holder.bookPrice.setText(book.getPrice());
         holder.bookIsbn.setText(book.getIsbn13());
         // 配置圖片
-        Picasso.get().load(book.getImage()).placeholder(R.drawable.loading)
-                .into(holder.bookImage);
-        // 分想資料
+        Picasso.get().load(book.getImage()).placeholder(R.drawable.loading).into(holder.bookImage);
+        //Picasso.get().load(book.getImage()).placeholder(R.drawable.loading_icon).into(holder.bookImage);
+        // 分享資料
+        holder.bookImage.setOnLongClickListener(view -> {
+            Intent shareIntent = new Intent();
+            shareIntent.setAction(Intent.ACTION_SEND);
+            shareIntent.putExtra(Intent.EXTRA_TEXT, book.getImage());
+            shareIntent.setType("image/*");
+            context.startActivity(Intent.createChooser(shareIntent, "好書分享"));
+            return true;
+        });
     }
 
     class BookListViewHolder extends RecyclerView.ViewHolder {
