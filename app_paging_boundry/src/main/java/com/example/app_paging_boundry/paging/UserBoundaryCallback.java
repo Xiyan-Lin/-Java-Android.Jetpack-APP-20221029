@@ -17,7 +17,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class UserBoundaryCallback extends PagedList.BoundaryCallback<User> {
-    public static final int PER_PAGE = 5;
+    public static final int PER_PAGE = 20;
     private Application application;
     public UserBoundaryCallback(Application application) {
         this.application = application;
