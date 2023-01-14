@@ -31,17 +31,6 @@
         tools:text="Java Cookbook, 2nd Edition" />
 
     <TextView
-        android:id="@+id/book_isbn"
-        android:layout_width="199dp"
-        android:layout_height="27dp"
-        android:layout_marginStart="4dp"
-        android:layout_marginBottom="8dp"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/book_title"
-        tools:text="ISBN : 978596007010" />
-
-    <TextView
         android:id="@+id/book_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,5 +41,16 @@
         app:layout_constraintTop_toBottomOf="@+id/book_title"
         app:layout_constraintVertical_bias="0.538"
         tools:text="$3.89" />
+
+    <TextView
+        android:id="@+id/book_isbn"
+        android:layout_width="199dp"
+        android:layout_height="27dp"
+        android:layout_marginStart="4dp"
+        android:layout_marginBottom="8dp"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="@+id/book_title"
+        tools:text="ISBN : 978596007010" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
