@@ -53,7 +53,7 @@ public class UserAdapter extends PagedListAdapter<User, UserAdapter.UserViewHold
         holder.tvName.setText(user.getId() + ": " + user.getLoginName());
         Picasso.get().load(user.getAvatar())
                 .placeholder(R.drawable.loading)
-                .error(R.drawable.ic_launcher_background)
+                .error(R.drawable.ic_baseline_error_outline_24)
                 .into(holder.ivAvatar);
     }
 
