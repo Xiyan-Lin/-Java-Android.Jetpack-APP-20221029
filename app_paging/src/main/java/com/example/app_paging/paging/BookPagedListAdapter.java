@@ -20,7 +20,7 @@ public class BookPagedListAdapter extends PagedListAdapter<Book, BookPagedListAd
 
     private Context context;
 
-    protected BookPagedListAdapter(Context context) {
+    public BookPagedListAdapter(Context context) {
         super(diffCallback);
         this.context = context;
     }

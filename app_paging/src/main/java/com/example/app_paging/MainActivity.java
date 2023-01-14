@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     private Context context;
+    public static final String SEARCH_TAG = "SEARCH_TAG";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
                 Toast.makeText(context, "Search box is empty!", Toast.LENGTH_SHORT).show();
             } else {
                 Intent intent = new Intent(context, BookListActivity.class);
-                intent.putExtra("SEARCH TAG", searchStr);
+                intent.putExtra(SEARCH_TAG, searchStr);
                 startActivity(intent);
             }
         });
