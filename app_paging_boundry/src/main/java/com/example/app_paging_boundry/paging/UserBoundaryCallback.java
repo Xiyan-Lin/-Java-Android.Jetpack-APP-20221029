@@ -63,7 +63,23 @@ public class UserBoundaryCallback extends PagedList.BoundaryCallback<User> {
     // 根據 endUser (最末筆 user) 來加載下一頁數據
     private void getNextPage(User endUser) {
         int since = endUser.getId();
+        RetrofitClient.getInstance()
+                .getApi()
+                .getUsers(since, PER_PAGE)
+                .enqueue(new Callback<List<User>>() {
+                    @Override
+                    public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                        if(response.body() != null) {
+                            List<User> users = response.body(); // 網路爬來的資料
+                            addUsers(users); // 插入數據
+                        }
+                    }
 
+                    @Override
+                    public void onFailure(Call<List<User>> call, Throwable t) {
+
+                    }
+                });
     }
 
     // 插入數據
