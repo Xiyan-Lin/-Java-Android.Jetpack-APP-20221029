@@ -2,6 +2,7 @@ package com.example.app_paging_boundry.db;
 
 import androidx.paging.DataSource;
 import androidx.room.Dao;
+import androidx.room.Insert;
 import androidx.room.Query;
 
 import com.example.app_paging_boundry.model.User;
@@ -10,6 +11,10 @@ import java.util.List;
 
 @Dao
 public interface UserDao {
+
+    // 多筆新增
+    @Insert
+    void insertUsers(List<User> users);
 
     // 清空數據
     @Query("DELETE FROm user")
