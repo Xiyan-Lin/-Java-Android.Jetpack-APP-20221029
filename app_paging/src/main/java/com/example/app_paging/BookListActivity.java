@@ -9,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import com.example.app_paging.model.Query;
 import com.example.app_paging.paging.BookListViewModel;
@@ -36,6 +37,8 @@ public class BookListActivity extends AppCompatActivity {
             String queryText = intent.getStringExtra("SEARCH TAG");
             // 存放參數
             Query.setSearchQueryStr(queryText);
+
+            Toast.makeText(context, Query.getSearchQueryStr(), Toast.LENGTH_SHORT).show();
         }
     }
 
