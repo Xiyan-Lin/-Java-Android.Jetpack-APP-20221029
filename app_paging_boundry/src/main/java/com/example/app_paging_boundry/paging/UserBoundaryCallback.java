@@ -28,6 +28,7 @@ public class UserBoundaryCallback extends PagedList.BoundaryCallback<User> {
     @Override
     public void onZeroItemsLoaded() {
         super.onZeroItemsLoaded();
+        getFirstPage();
     }
 
     // 時機：當用戶滑動到 RecyclerView 底部
@@ -36,6 +37,7 @@ public class UserBoundaryCallback extends PagedList.BoundaryCallback<User> {
     @Override
     public void onItemAtEndLoaded(@NonNull User itemAtEnd) {
         super.onItemAtEndLoaded(itemAtEnd);
+        getNextPage(itemAtEnd);
     }
 
     // 當資料表沒有數據時要透過 retrofit 加載數據
