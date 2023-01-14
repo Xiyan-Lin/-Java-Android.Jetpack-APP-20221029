@@ -60,6 +60,12 @@ public class UserBoundaryCallback extends PagedList.BoundaryCallback<User> {
                 });
     }
 
+    // 根據 endUser (最末筆 user) 來加載下一頁數據
+    private void getNextPage(User endUser) {
+        int since = endUser.getId();
+
+    }
+
     // 插入數據
     private void addUsers(List<User> users) {
         AsyncTask.execute(() -> {
