@@ -4,7 +4,7 @@ plugins {
 
 android {
     namespace 'com.example.app_event_bus'
-    compileSdk 32
+    compileSdk 33
 
     defaultConfig {
         applicationId "com.example.app_event_bus"
